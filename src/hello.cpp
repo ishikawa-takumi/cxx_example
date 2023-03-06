@@ -2,4 +2,7 @@
 
 #include <iostream>
 
-void hello() { std::cout << "Hello" << std::endl; }
+const std::string& hello(const std::string& name) {
+  static std::string message = "Hello " + name + "!";
+  return message;
+}

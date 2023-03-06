@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 #include "rust/cxx.h"
 
-void hello();
+const std::string& hello(const std::string& name);

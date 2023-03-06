@@ -1,8 +1,5 @@
 #include "hello.h"
 
-#include <iostream>
+#include "cxx_example/src/main.rs.h"
 
-const std::string& hello(const std::string& name) {
-  static std::string message = "Hello " + name + "!";
-  return message;
-}
+void hello() { callback(); }

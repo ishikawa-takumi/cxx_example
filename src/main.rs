@@ -1,16 +1,20 @@
-use cxx::let_cxx_string;
-
 #[cxx::bridge]
 mod ffi {
+    extern "Rust" {
+        fn callback();
+    }
+
     unsafe extern "C++" {
         include!("cxx_example/src/hello.h");
 
-        fn hello(name: &CxxString) -> &CxxString;
+        fn hello();
     }
 }
 
+fn callback() {
+    println!("Callback");
+}
+
 fn main() {
-    let_cxx_string!(name = "Taro");
-    let message = ffi::hello(&name);
-    println!("{}", message);
+    ffi::hello();
 }

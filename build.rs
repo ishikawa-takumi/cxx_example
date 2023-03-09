@@ -1,8 +1,14 @@
+use std::env;
+
 fn main() {
-    cxx_build::bridge("src/main.rs")
-        .file("src/hello.cpp")
-        .flag_if_supported("-std=c++20")
-        .compile("cxx-example");
+    let project_dir = env::current_dir().unwrap();
+    println!(
+        "cargo:rustc-link-search=native={}/src",
+        project_dir.display()
+    );
+
+    println!("cargo:rustc-link-lib=c++");
+    println!("cargo:rustc-link-lib=static=hello");
+
     println!("cargo:rerun-if-changed=/src/*");
-    println!("cargo:rerun-if-changed=/build.rs");
 }

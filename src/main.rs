@@ -1,12 +1,12 @@
+#[cxx::bridge]
 mod ffi {
-    #[link(name = "hello")]
-    extern "C" {
-        pub fn hello();
+    unsafe extern "C++" {
+        include!("cxx_example/src/hello_wrapper.h");
+
+        fn hello_wrapper();
     }
 }
 
 fn main() {
-    unsafe {
-        ffi::hello();
-    }
+    ffi::hello_wrapper();
 }
